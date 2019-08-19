@@ -13,11 +13,13 @@ class calculator extends Component {
     this.state = {
       employeeName: "",
       numberOfDependants: 0,
-      calculatedCost: ""
+      calculatedCost: 0, 
+      employeeSalary: 0,
+      employeePaycheck: 0
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDependantChange = this.handleDependantChange.bind(this);
-    this.calculate = this.calculate.bind(this);
+    this.calculateBenefitDeduction = this.calculateBenefitDeduction.bind(this);
   }
   handleNameChange(event) {
     this.setState({
@@ -32,22 +34,29 @@ class calculator extends Component {
     console.log(this.state);
   }
 
-  calculate() {
+  calculateBenefitDeduction() {
     //6000 is years worth of dependants 500 * 12 months
     //12000 is years worth for employee
 
     let dependantCost = this.state.numberOfDependants * 6000;
     let cost = 12000 + dependantCost;
+
+    var salarywD = 52000 - cost;
+    var payCheckWD = ((52000 - cost) / 26);
+    payCheckWD.toFixed(2);
  
     if(this.state.employeeName.charAt(0) == 'A'){
         var discount = parseInt(cost * 0.10);
         cost = cost - discount;
     }
     this.setState({
-        calculatedCost: cost
+        calculatedCost: cost,
+        employeeSalary: salarywD,
+        employeePaycheck: payCheckWD,
       });
 
-    console.log(cost);
+
+    console.log(payCheckWD);
   }
 
   render() {
@@ -69,11 +78,15 @@ class calculator extends Component {
           />
         </Form>
         <div>
-          <Button onClick={this.calculate}>Calculate Cost</Button>
+          <Button onClick={this.calculateBenefitDeduction}>Calculate Cost</Button>
         </div>
         <div>
-            <h2> 
-                Calculated Benefites for {this.state.employeeName} for 2019 is ${this.state.calculatedCost}
+            <h2>
+                Calculated benefits for {this.state.employeeName} for 2019 is ${this.state.calculatedCost}
+                <br></br>
+                Calulated Yearly Salary after Benefits deductions {this.state.employeeSalary}
+                <br></br>
+                Calculated Paycheck after Benefits deductions {this.state.employeePaycheck.toFixed(2)}
             </h2>
         </div>
       </div>
