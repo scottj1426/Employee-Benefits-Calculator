@@ -35,11 +35,18 @@ class calculator extends Component {
   calculate() {
     //6000 is years worth of dependants 500 * 12 months
     //12000 is years worth for employee
+
     let dependantCost = this.state.numberOfDependants * 6000;
     let cost = 12000 + dependantCost;
+ 
+    if(this.state.employeeName.charAt(0) == 'A'){
+        var discount = parseInt(cost * 0.10);
+        cost = cost - discount;
+    }
     this.setState({
-      calculatedCost: cost
-    });
+        calculatedCost: cost
+      });
+
     console.log(cost);
   }
 
@@ -65,9 +72,9 @@ class calculator extends Component {
           <Button onClick={this.calculate}>Calculate Cost</Button>
         </div>
         <div>
-            <h1> 
-                Calculated Benefites for {this.state.employeeName} for 2019 is {this.state.calculatedCost}
-            </h1>
+            <h2> 
+                Calculated Benefites for {this.state.employeeName} for 2019 is ${this.state.calculatedCost}
+            </h2>
         </div>
       </div>
     );
