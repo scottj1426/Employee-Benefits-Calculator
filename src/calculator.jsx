@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import { Input, Form, Button } from "semantic-ui-react";
 
-const dependantOptions = [
-  { key: "1", text: "1", value: "1" },
-  { key: "2", text: "2", value: "2" },
-  { key: "3", text: "3", value: "3" }
-];
-
 class calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      employeeName: "",
+      employeeName: '',
       numberOfDependants: 0,
       calculatedCost: 0, 
       employeeSalary: 0,
@@ -38,14 +32,14 @@ class calculator extends Component {
     //6000 is years worth of dependants 500 * 12 months
     //12000 is years worth for employee
 
-    let dependantCost = this.state.numberOfDependants * 6000;
-    let cost = 12000 + dependantCost;
+    let dependantCost = this.state.numberOfDependants * 500;
+    let cost = 1000 + dependantCost;
 
     var salarywD = 52000 - cost;
     var payCheckWD = ((52000 - cost) / 26);
     payCheckWD.toFixed(2);
  
-    if(this.state.employeeName.charAt(0) == 'A'){
+    if(this.state.employeeName.charAt(0) === 'A'){
         var discount = parseInt(cost * 0.10);
         cost = cost - discount;
     }
@@ -53,7 +47,7 @@ class calculator extends Component {
         calculatedCost: cost,
         employeeSalary: salarywD,
         employeePaycheck: payCheckWD,
-      });
+    });
 
 
     console.log(payCheckWD);
