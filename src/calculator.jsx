@@ -12,33 +12,35 @@ class calculator extends Component {
       employeeSalary: 0,
       employeePaycheck: 0
     };
+    //binds to connect functions to use
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDependantChange = this.handleDependantChange.bind(this);
     this.calculateBenefitDeduction = this.calculateBenefitDeduction.bind(this);
   }
+  //handles employee name being entered
   handleNameChange(event) {
     this.setState({
       employeeName: event.target.value
     });
     console.log(this.state);
   }
+    //handles employee name being entered
   handleDependantChange(event) {
     this.setState({
       numberOfDependants: event.target.value
     });
-    // console.log(event.target.value);
+    console.log(event.target.value);
   }
-
+  // calculates total benefits costs
   calculateBenefitDeduction() {
-    let dependantCost = this.state.numberOfDependants * 500;
-    let cost = 1000 + dependantCost;
-
-
+    var dependantCost = this.state.numberOfDependants * 500;
+    var cost = 1000 + dependantCost;
     var test = this.state.dependentName.map((d)=> d.charAt(0));
-    // add in logic from Repl to check dependantsName for A for any number
-    if(this.state.employeeName.charAt(0) === 'A') {
+
+    if(this.state.employeeName.charAt(0) === 'A' || this.state.employeeName.charAt(0) === 'a') {
       cost = cost - (1000 * 0.10);
-  }
+    }
+
     test.forEach(function(item,index,array) {
       if(item === 'A' || item === 'a'){
         var discount = 500 * 0.10;
@@ -58,15 +60,12 @@ class calculator extends Component {
         employeeSalary: salarywD,
         employeePaycheck: payCheckWD,
     });
-
-
-     console.log(this.state.employeeName);
   }
-
+  // sets state dependant name to itself for values
   addDependent(){
     this.setState({dependentName: [...this.state.dependentName, '']})
   }
-
+  // handles dependent name being entered from input
   handleDep(e, index){
     this.state.dependentName[index] = e.target.value;
     this.setState({dependentName: this.state.dependentName})
@@ -95,7 +94,8 @@ class calculator extends Component {
             this.state.dependentName.map((dep, index) => {
               return (
                 <div key={index}>
-                  <Input 
+                  <Input
+                  placeholder="name of dependent"
                   value={dep}
                   onChange={(e)=> this.handleDep(e, index)}
                   />
@@ -112,9 +112,9 @@ class calculator extends Component {
             <h2>
                 Calculated benefits for {this.state.employeeName} for 2019 is ${this.state.calculatedCost}
                 <br></br>
-                Calulated Yearly Salary after Benefits deductions {this.state.employeeSalary}
+                Calulated Yearly Salary after Benefits deductions ${this.state.employeeSalary}
                 <br></br>
-                Calculated Paycheck after Benefits deductions {this.state.employeePaycheck.toFixed(2)}
+                Calculated Paycheck after Benefits deductions ${this.state.employeePaycheck.toFixed(2)}
             </h2>
         </div>
       </div>
