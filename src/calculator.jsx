@@ -6,6 +6,7 @@ class calculator extends Component {
     super(props);
     this.state = {
       employeeName: '',
+      dependentName:[],
       numberOfDependants: 0,
       calculatedCost: 0, 
       employeeSalary: 0,
@@ -38,8 +39,10 @@ class calculator extends Component {
     var salarywD = 52000 - cost;
     var payCheckWD = ((52000 - cost) / 26);
     payCheckWD.toFixed(2);
+
+    var test = this.state.dependentName.map((d)=> d.charAt(0));
  
-    if(this.state.employeeName.charAt(0) === 'A'){
+    if(this.state.employeeName.charAt(0) === 'A' || test[0] === "A"){
         var discount = parseInt(cost * 0.10);
         cost = cost - discount;
     }
@@ -50,7 +53,17 @@ class calculator extends Component {
     });
 
 
-    console.log(payCheckWD);
+    console.log(test);
+  }
+
+  addDependent(){
+    this.setState({dependentName: [...this.state.dependentName, '']})
+  }
+
+  handleDep(e, index){
+    this.state.dependentName[index] = e.target.value;
+    this.setState({dependentName: this.state.dependentName})
+    console.log(this.state.dependentName)
   }
 
   render() {
@@ -70,9 +83,23 @@ class calculator extends Component {
             type="text"
             onChange={this.handleDependantChange}
           />
+
+          {
+            this.state.dependentName.map((dep, index) => {
+              return (
+                <div key={index}>
+                  <Input 
+                  value={dep}
+                  onChange={(e)=> this.handleDep(e, index)}
+                  />
+                </div>
+              )
+            })
+          }
         </Form>
         <div>
           <Button onClick={this.calculateBenefitDeduction}>Calculate Cost</Button>
+          <Button onClick={(e)=> this.addDependent(e)}>Add Dependent</Button>
         </div>
         <div>
             <h2>
