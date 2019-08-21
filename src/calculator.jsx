@@ -33,13 +33,12 @@ class calculator extends Component {
     let dependantCost = this.state.numberOfDependants * 500;
     let cost = 1000 + dependantCost;
 
-    var salarywD = 52000 - cost;
-    var payCheckWD = ((52000 - cost) / 26);
-    payCheckWD.toFixed(2);
 
     var test = this.state.dependentName.map((d)=> d.charAt(0));
     // add in logic from Repl to check dependantsName for A for any number
-
+    if(this.state.employeeName.charAt(0) === 'A') {
+      cost = cost - (1000 * 0.10);
+  }
     test.forEach(function(item,index,array) {
       if(item === 'A' || item === 'a'){
         var discount = 500 * 0.10;
@@ -49,10 +48,11 @@ class calculator extends Component {
         return cost;
       }
     });
-    // if(this.state.employeeName.charAt(0) === 'A' || test[0] === 'A' ) {
-    //     var discount = parseInt(cost * 0.10);
-    //     cost = cost - discount;
-    // }
+    // set salry variables after cost totaled, then calculate
+    var salarywD = 52000 - cost;
+    var payCheckWD = ((52000 - cost) / 26);
+    payCheckWD.toFixed(2);
+
     this.setState({
         calculatedCost: cost,
         employeeSalary: salarywD,
@@ -60,7 +60,7 @@ class calculator extends Component {
     });
 
 
-    // console.log(test);
+     console.log(this.state.employeeName);
   }
 
   addDependent(){
