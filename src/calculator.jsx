@@ -42,7 +42,7 @@ class calculator extends Component {
 
     test.forEach(function(item,index,array) {
       if(item === 'A' || item === 'a'){
-        var discount = parseInt(cost * 0.10);
+        var discount = 500 * 0.10;
         cost = cost - discount;
       }
       else {
