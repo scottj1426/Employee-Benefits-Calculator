@@ -26,13 +26,10 @@ class calculator extends Component {
     this.setState({
       numberOfDependants: event.target.value
     });
-    console.log(this.state);
+    // console.log(event.target.value);
   }
 
   calculateBenefitDeduction() {
-    //6000 is years worth of dependants 500 * 12 months
-    //12000 is years worth for employee
-
     let dependantCost = this.state.numberOfDependants * 500;
     let cost = 1000 + dependantCost;
 
@@ -41,11 +38,21 @@ class calculator extends Component {
     payCheckWD.toFixed(2);
 
     var test = this.state.dependentName.map((d)=> d.charAt(0));
- 
-    if(this.state.employeeName.charAt(0) === 'A' || test[0] === "A"){
+    // add in logic from Repl to check dependantsName for A for any number
+
+    test.forEach(function(item,index,array) {
+      if(item === 'A' || item === 'a'){
         var discount = parseInt(cost * 0.10);
         cost = cost - discount;
-    }
+      }
+      else {
+        return cost;
+      }
+    });
+    // if(this.state.employeeName.charAt(0) === 'A' || test[0] === 'A' ) {
+    //     var discount = parseInt(cost * 0.10);
+    //     cost = cost - discount;
+    // }
     this.setState({
         calculatedCost: cost,
         employeeSalary: salarywD,
@@ -53,7 +60,7 @@ class calculator extends Component {
     });
 
 
-    console.log(test);
+    // console.log(test);
   }
 
   addDependent(){
