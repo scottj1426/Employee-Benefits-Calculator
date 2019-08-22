@@ -23,15 +23,13 @@ class calculator extends Component {
       employeeName: event.target.value
     });
   }
-    //handles employee name being entered
+  //handles employee name being entered
   handleDependentName(event) {
     this.setState({
       numberOfDependents: event.target.value
     });
   }
   // calculates total benefits costs
-  //factor out calculation for cost of Benefits
-  //break it out own function 
   calculateBenefitDeduction() {
     var dependentCost = this.state.numberOfDependents * 500;
     var cost = 1000 + dependentCost;
