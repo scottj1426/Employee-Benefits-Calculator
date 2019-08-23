@@ -107,11 +107,11 @@ class calculator extends Component {
         </div>
         <div>
             <h2>
-                Calculated benefits for {this.state.employeeName} for 2019 is ${this.state.calculatedCost}
+                Calculated benefit cost for {this.state.employeeName} for 2019 is ${this.state.calculatedCost}
                 <br></br>
-                Calulated Yearly Salary after Benefits deductions ${this.state.employeeSalary}
+                Calulated yearly salary after benefit deductions ${this.state.employeeSalary}
                 <br></br>
-                Calculated Paycheck after Benefits deductions ${this.state.employeePaycheck.toFixed(2)}
+                Calculated paycheck after benefit deductions ${this.state.employeePaycheck.toFixed(2)}
             </h2>
         </div>
       </div>
