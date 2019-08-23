@@ -1,6 +1,6 @@
-To run the app: 
-Run Yarn install to make surea ll dependecnies are updated. 
-Yarn start will start the server and load the app in the browser.
+## To run the app: 
+Run `yarn install` to make sure all dependecnies are updated. 
+`yarn start` will start the server and load the app in the browser.
 
 Coding Challenge Overview:
 Each of our Paylocity product teams operates like a small startup, empowered to deliver business value
